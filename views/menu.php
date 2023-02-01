@@ -8,6 +8,8 @@
     <body>
         <style><?php include '../styles/home.css'; ?></style>
         <style><?php include '../styles/menu.css'; ?></style>
+        <input type="button" value="Accueil" onclick="window.location.href='/home.php'">
+        
         <h2>Choisissez un questionnaire</h2>
         <div class="menu">
             <div id="Q1" class="questionnaire">
