@@ -6,6 +6,7 @@ create table QUESTIONNAIRE(
 
 create table QUESTION(
     idQuestion int,
+    numero int,
     question varchar(50),
     typeQuestion varchar(10),
     valeurQuestion int,
