@@ -96,6 +96,52 @@ h3 {
     background-color: #FFC107;
     color: #000;
     cursor: pointer;
+    box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.5);
+    transform: translateY(-5px);
+    transition: transform 150ms;
+}
+
+input[type="submit"] {
+    display: inline-block;
+    padding: 1rem 2rem;
+    border-radius: 5px;
+    border: 2px solid #FFC107;
+    background-color: transparent;
+    color: #FFF;
+    font-size: 1.5rem;
+    font-weight: 500;
+    margin: 1rem;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover {
+    background-color: #FFC107;
+    color: #000;
+    cursor: pointer;
+    box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2);
+    transform: translateY(-5px);
+    transition: transform 150ms;
+}
+
+input[type="button"] {
+    display: inline-block;
+    padding: 1rem 2rem;
+    border-radius: 5px;
+    border: 2px solid #FFC107;
+    background-color: transparent;
+    color: #FFF;
+    font-size: 1.5rem;
+    font-weight: 500;
+    margin-top: 1%;
+    margin-bottom: -2%;
+    margin-left: 1%;
+    cursor: pointer;
+}
+
+input[type="button"]:hover {
+    background-color: #FFC107;
+    color: #000;
+    cursor: pointer;
     box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2);
     transform: translateY(-5px);
     transition: transform 150ms;

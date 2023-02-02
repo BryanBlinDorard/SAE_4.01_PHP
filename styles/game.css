@@ -9,3 +9,42 @@
     text-align: center;
     width: 100%;
 }
+
+.question {
+    margin-bottom: 1.5%;
+}
+
+/* CSS INPUTS */
+
+input {
+    margin-top: 1%;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 4px 6px;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
+    font-size: 14;
+    color: #000;
+    text-align: center;
+}
+
+input[type="text"] {
+    height: 20px;
+}
+
+select {
+    color: #000;
+    margin-top: 1%;
+    padding: 4px 6px;
+    border-radius: 4px;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
+    font-size: 14px;
+}
+
+select option {
+    color: #000;
+}
+
+select option:checked {
+    background-color: #FFC107;
+}
