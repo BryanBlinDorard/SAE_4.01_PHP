@@ -12,6 +12,15 @@
 
 .question {
     margin-bottom: 1.5%;
+    display: none;
+}
+
+#fini {
+    display: none;
+}
+
+h2 {
+    margin-bottom: 19rem;
 }
 
 /* CSS INPUTS */
