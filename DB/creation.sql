@@ -23,12 +23,19 @@ create table REPONSE(
 
 create table CLASSEMENT(
     idClassement int,
-    nomPersonne varchar(30),
-    scorePersonne int,
     idQuestionnaire int,
     primary key (idClassement)
+);
+
+create table SCORE(
+    idScore int,
+    scorePersonne int,
+    nomPersonne varchar(30),
+    idClassement int,
+    primary key (idScore)
 );
 
 alter table REPONSE add foreign key (idQuestion) references QUESTION(idQuestion);
 alter table QUESTION add foreign key (idQuestionnaire) references QUESTIONNAIRE(idQuestionnaire);
 alter table CLASSEMENT add foreign key (idQuestionnaire) references QUESTIONNAIRE(idQuestionnaire);
+alter table SCORE add foreign key (idClassement) references CLASSEMENT(idClassement);

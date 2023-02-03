@@ -19,7 +19,22 @@
                 $classements = $requete->fetchAll();
 
                 foreach($classements as $classement) {
-                    $listeClassements = new Classement($classement["idClassement"], $classement["nomPersonne"], $classement["scorePersonne"], $classement["idQuestionnaire"]);
+                    $listeClassements[] = new Classement($classement["idClassement"], $classement["idQuestionnaire"], $classement["nom"]);
+                }
+
+                foreach($listeClassements as $classement) {
+                    echo "<div id=\"Q".$classement->id."\" class=\"questionnaireScoreboard\">";
+                    echo "<h3>".$classement->nomQuestionnaire."</h3>";
+                    echo "<table class=\"tableau\"";
+                    echo "<tr>";
+                    echo "<th>Score</th>";
+                    echo "<th>Nom</th>";
+                    echo "</tr>";
+                    $requeteScore = $connexion->prepare("select * from SCORE natural join CLASSEMENT where idClassement=".$classement->id);
+                    $requete2->execute();
+                    $scores = $requete2->fetchAll();
+                    echo "</table>";
+                    echo "</div>";
                 }
 
             ?>
