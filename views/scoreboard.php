@@ -11,6 +11,18 @@
         <input type="button" value="Accueil" onclick="window.location.href='/home.php'">
         <h1>Voici les Scores</h1>
         <div class="scoreboard">
+            <?php
+                require_once("../connexion.php");
+                require_once("../classes/Classement.php");
+                $requete = $connexion->prepare("select * from QUESTIONNAIRE natural join CLASSEMENT");
+                $requete->execute();
+                $classements = $requete->fetchAll();
+
+                foreach($classements as $classement) {
+                    $listeClassements = new Classement($classement["idClassement"], $classement["nomPersonne"], $classement["scorePersonne"], $classement["idQuestionnaire"]);
+                }
+
+            ?>
             <div id="Q1" class="questionnaireScoreboard">
                 <h3>Questionnaire 1</h3>
                 <table class="tableau">
