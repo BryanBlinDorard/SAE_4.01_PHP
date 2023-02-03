@@ -92,7 +92,7 @@ class Question {
             echo "</div>";
         } else if ($this->typeQuestion == "number"){
             echo "<div class='numberAnswer'>";
-            echo "<input type='number' name=".$this->numero.">";
+            echo "<input type='number' name=".$this->numero." required>";
             echo "</div>";
         }
         echo "</div>";
