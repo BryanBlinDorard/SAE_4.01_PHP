@@ -10,43 +10,27 @@
         <style><?php include '../styles/menu.css'; ?></style>
         <input type="button" value="Accueil" onclick="window.location.href='/home.php'">
         
+        <?php
+            require("../connexion.php");
+            $connexion_db = $connexion;
+            $requete = $connexion_db->prepare("SELECT * FROM QUESTIONNAIRE");
+            $requete->execute();
+            $questionnaires = $requete->fetchAll();
+        ?>
+
         <h2>Choisissez un questionnaire</h2>
         <div class="menu">
-            <div id="Q1" class="questionnaire">
-                <h3>Questionnaire 1</h3>
-                <form action="/game.php" method="post">
-                    <input type="hidden" name="questionnaire" value="1">
-                    <input type="submit" value="Jouer">
-                </form>
-            </div>
-            <div id="Q2" class="questionnaire">
-                <h3>Questionnaire 2</h3>
-                <form action="/game.php" method="post">
-                    <input type="hidden" name="questionnaire" value="2">
-                    <input type="submit" value="Jouer">
-                </form>
-            </div>
-            <div id="Q3" class="questionnaire">
-                <h3>Questionnaire 3</h3>
-                <form action="/game.php" method="post">
-                    <input type="hidden" name="questionnaire" value="3">
-                    <input type="submit" value="Jouer">
-                </form>
-            </div>
-            <div id="Q4" class="questionnaire">
-                <h3>Questionnaire 4</h3>
-                <form action="/game.php" method="post">
-                    <input type="hidden" name="questionnaire" value="4">
-                    <input type="submit" value="Jouer">
-                </form>
-            </div>
-            <div id="Q5" class="questionnaire">
-                <h3>Questionnaire 5</h3>
-                <form action="/game.php" method="post">
-                    <input type="hidden" name="questionnaire" value="5">
-                    <input type="submit" value="Jouer">
-                </form>
-            </div>
+        <?php 
+            foreach($questionnaires as $questionnaire){
+                echo "<div id='Q".$questionnaire['idQuestionnaire']."' class='questionnaire'>";
+                echo "<h3>".$questionnaire['nom']."</h3>";
+                echo "<form action='/game.php' method='post'>";
+                echo "<input type='hidden' name='questionnaire' value='".$questionnaire['idQuestionnaire']."'>";
+                echo "<input type='submit' value='Jouer'>";
+                echo "</form>";
+                echo "</div>";
+            }
+        ?>
         </div>
         
     </body>
