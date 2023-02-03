@@ -11,3 +11,10 @@ insert into REPONSE value (1, "2016-03-24", 1),
                           (2, "2022-02-25", 2),
                           (3, "2011-11-18", 3),
                           (4, "Iudex Gundyr", 4);
+
+insert into CLASSEMENT value (1, "Bryan", 1, 3),
+                             (2, "Constantin", 0, 3),
+                             (3, "Bryan", 1, 2),
+                             (4, "Constantin", 1, 2),
+                             (5, "Bryan", 0, 1),
+                             (6, "Constantin", 2, 1);
