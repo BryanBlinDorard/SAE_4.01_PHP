@@ -13,7 +13,7 @@
         <?php
             require("../connexion.php");
             $connexion_db = $connexion;
-            $requete = $connexion_db->prepare("SELECT * FROM questionnaire");
+            $requete = $connexion_db->prepare("SELECT * FROM QUESTIONNAIRE");
             $requete->execute();
             $questionnaires = $requete->fetchAll();
         ?>

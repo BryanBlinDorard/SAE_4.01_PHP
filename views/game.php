@@ -17,11 +17,11 @@
             $connexion_db = $connexion;
             $id_questionnaire = $_POST['questionnaire'];
             
-            $requete = $connexion_db->prepare("SELECT * FROM question WHERE idQuestionnaire = $id_questionnaire");
+            $requete = $connexion_db->prepare("SELECT * FROM QUESTION    WHERE idQuestionnaire = $id_questionnaire");
             $requete->execute();
             $questions = $requete->fetchAll();
 
-            $questionnaire = $connexion_db->prepare("SELECT * FROM questionnaire WHERE idQuestionnaire = $id_questionnaire");
+            $questionnaire = $connexion_db->prepare("SELECT * FROM QUESTIONNAIRE WHERE idQuestionnaire = $id_questionnaire");
             $questionnaire->execute();
             $questionnaire = $questionnaire->fetch();
 
