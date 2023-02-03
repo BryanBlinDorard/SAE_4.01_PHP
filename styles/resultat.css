@@ -1,0 +1,30 @@
+.resultat {
+    text-align:center;
+}
+
+.question {
+    text-align: center;
+    background-color: #24244b;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    display: inline-block;
+    margin-left: 30%;
+    margin-right: 30%;
+    margin-bottom: 2%;
+    padding: 0.5%;
+}
+
+.questions {
+    text-align: center;
+    /* aligne moi toutes les questions les unes en dessous les autres */
+    flex-direction: column;
+}
+
+p {
+    padding-top: 2%;
+    font-size: 150%;
+}
+
+button {
+    margin-top: 2%;
+}
