@@ -7,14 +7,18 @@ insert into QUESTION values (1, 1, "Quelle est la date de sortie du jeu ?", "dat
                             (2, 1, "Quelle est la date de sortie du jeu ?", "date", 1, 2),
                             (3, 1, "Quelle est la date de sortie du jeu ?", "date", 1, 3);
 
-insert into REPONSE value (1, "2016-03-24", 1),
+insert into REPONSE values (1, "2016-03-24", 1),
                           (2, "2022-02-25", 2),
                           (3, "2011-11-18", 3),
                           (4, "Iudex Gundyr", 4);
 
-insert into CLASSEMENT value (1, "Bryan", 1, 3),
-                             (2, "Constantin", 0, 3),
-                             (3, "Bryan", 1, 2),
-                             (4, "Constantin", 1, 2),
-                             (5, "Bryan", 0, 1),
-                             (6, "Constantin", 2, 1);
+insert into CLASSEMENT values (1, 3),
+                             (2,  2),
+                             (3,  1);
+
+insert into SCORE values (1, 1, "Bryan", 1),
+                         (2, 0, "Constantin", 1),
+                         (3, 1, "Bryan", 2),
+                         (4, 1, "Constantin", 2),
+                         (5, 0, "Bryan", 3),
+                         (6, 2, "Constantin", 3);

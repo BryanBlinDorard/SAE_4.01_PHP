@@ -1,6 +1,6 @@
 <?php 
     define("USER", "root");
-    define("PASSWORD", "brybry");
+    define("PASSWORD", "root");
     define("SERVER", "localhost");
-    define("BASE", "sae_php");
+    define("BASE", "saephp");
 ?>
