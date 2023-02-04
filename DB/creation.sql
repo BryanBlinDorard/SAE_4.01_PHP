@@ -7,7 +7,7 @@ create table QUESTIONNAIRE(
 create table QUESTION(
     idQuestion int,
     numero int,
-    question varchar(50),
+    question varchar(500),
     typeQuestion varchar(10),
     valeurQuestion int,
     idQuestionnaire int,
@@ -16,7 +16,8 @@ create table QUESTION(
 
 create table REPONSE(
     idReponse int,
-    reponse varchar(20),
+    reponse varchar(100),
+    estBonne boolean,
     idQuestion int,
     primary key (idReponse)
 );
