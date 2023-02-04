@@ -31,8 +31,8 @@
                     echo "<th>Nom</th>";
                     echo "</tr>";
                     $requeteScore = $connexion->prepare("select * from SCORE natural join CLASSEMENT where idClassement=".$classement->id);
-                    $requete2->execute();
-                    $scores = $requete2->fetchAll();
+                    $requeteScore->execute();
+                    $scores = $requeteScore->fetchAll();
                     echo "</table>";
                     echo "</div>";
                 }
