@@ -74,12 +74,15 @@ class Question {
         $this->reponse = $reponse;
     }
 
+    public function addReponse($reponse){
+        $this->reponse[] = $reponse;
+    }
 
     public function __toString(){
         return "Question [id=".$this->id.", numero=".$this->numero.", question=".$this->question.", typeQuestion=".$this->typeQuestion.", valeurQuestion=".$this->valeurQuestion.", idQuestionnaire=".$this->idQuestionnaire."]";
     }
 
-    public function affichage() {
+    public function affichage($connexion) {
         echo "<div id='q".$this->id."' class='question'>";
         echo "<h3>".$this->question."</h3>";
         if ($this->typeQuestion == "text"){
@@ -93,6 +96,26 @@ class Question {
         } else if ($this->typeQuestion == "number"){
             echo "<div class='numberAnswer'>";
             echo "<input type='number' name=".$this->numero." required>";
+            echo "</div>";
+        } else if ($this->typeQuestion == "radio") {
+            echo "<div class='radioAnswer'>";
+            // récupère les réponses de la question du questionnaire
+            $requete = $connexion->prepare("SELECT * FROM REPONSE natural join QUESTION WHERE idQuestion = $this->id and idQuestionnaire = $this->idQuestionnaire");
+            $requete->execute();
+            $resultat = $requete->fetchAll();
+            foreach ($resultat as $reponse) {
+                echo "<input type='radio' name=".$this->numero." value=".$reponse['idReponse'].">".$reponse['reponse']."<br>";
+            }
+            echo "</div>";
+        } else if ($this->typeQuestion == "checkbox") {
+            echo "<div class='checkboxAnswer'>";
+            // récupère les réponses de la question du questionnaire
+            $requete = $connexion->prepare("SELECT * FROM REPONSE natural join QUESTION WHERE idQuestion = $this->id and idQuestionnaire = $this->idQuestionnaire");
+            $requete->execute();
+            $resultat = $requete->fetchAll();
+            foreach ($resultat as $reponse) {
+                echo "<input type='checkbox' name=".$this->numero."[] value=".$reponse['idReponse'].">".$reponse['reponse']."<br>";
+            }
             echo "</div>";
         }
         echo "</div>";

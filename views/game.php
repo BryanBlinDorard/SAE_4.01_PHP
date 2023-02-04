@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta charset="utf-8" />
+        <meta charset="UTF-8" />
         <title>Quyz</title>
     </head>
     <script><?php include '../js/game.js'; ?></script>
@@ -14,14 +14,13 @@
         <?php
             require("../connexion.php");
             require("../classes/Question.php");
-            $connexion_db = $connexion;
             $id_questionnaire = $_POST['questionnaire'];
             
-            $requete = $connexion_db->prepare("SELECT * FROM QUESTION    WHERE idQuestionnaire = $id_questionnaire");
+            $requete = $connexion->prepare("SELECT * FROM QUESTION WHERE idQuestionnaire = $id_questionnaire");
             $requete->execute();
             $questions = $requete->fetchAll();
 
-            $questionnaire = $connexion_db->prepare("SELECT * FROM QUESTIONNAIRE WHERE idQuestionnaire = $id_questionnaire");
+            $questionnaire = $connexion->prepare("SELECT * FROM QUESTIONNAIRE WHERE idQuestionnaire = $id_questionnaire");
             $questionnaire->execute();
             $questionnaire = $questionnaire->fetch();
 
@@ -37,7 +36,7 @@
                 echo "<form id='form-game' action='/resultat.php' method='POST'>";
                 echo "<input type='hidden' name='questionnaire' value='".$id_questionnaire."'>";
                 foreach($liste_de_questions as $question){
-                    $question->affichage();
+                    $question->affichage($connexion);
                 }
                 echo "<input type='submit' id='fini' value='Enregistrer les réponses'>";
                 echo "</form>";
