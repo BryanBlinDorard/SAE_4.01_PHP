@@ -17,7 +17,7 @@
                 require("../functions/affichage.php");
 
                 // LES VARIABLES SCORES
-                $score = 0;
+                $score_utilisateur = 0;
                 $score_max = 0;
                 
                 // DICTIONNAIRE QUI CONTIENT LES QUESTIONS ET LES REPONSES
@@ -78,6 +78,11 @@
                     }
                 }
 
+                // CALCUL DU SCORE MAX
+                for ($i = 0; $i < $nombre_de_question; $i++){
+                    $score_max += $liste_de_question_propre[$i]->getValeurQuestion();
+                }
+
                 // AFFICHAGE DES RESULTATS
                 echo "<div class='questions'>";
                 for ($i = 1 ; $i <= $nombre_de_question ; $i++){
@@ -87,14 +92,14 @@
                     if ($liste_de_question_propre[$i-1]->getTypeQuestion() == "date" or $liste_de_question_propre[$i-1]->getTypeQuestion() == "text" or $liste_de_question_propre[$i-1]->getTypeQuestion() == "number") {
                         if ($reponse_utilisateur[$i] == $liste_de_question_propre[$i-1]->getReponse()[0]->getReponse()){
                             bonneReponse($liste_de_question_propre[$i-1]->getReponse()[0]->getReponse());
-                            $score += $liste_de_question_propre[$i-1]->getValeurQuestion();
+                            $score_utilisateur += $liste_de_question_propre[$i-1]->getValeurQuestion();
                         } else {
                             mauvaiseReponse($liste_de_question_propre[$i-1]->getReponse()[0]->getReponse());
                         }
                     } else if ($liste_de_question_propre[$i-1]->getTypeQuestion() == "radio") {
                         if ($reponse_utilisateur[$i] == $liste_de_question_propre[$i-1]->getReponse()[0]->getID()){
                             bonneReponse($liste_de_question_propre[$i-1]->getReponse()[0]->getReponse());
-                            $score += $liste_de_question_propre[$i-1]->getValeurQuestion();
+                            $score_utilisateur += $liste_de_question_propre[$i-1]->getValeurQuestion();
                         } else {
                             mauvaiseReponse($liste_de_question_propre[$i-1]->getReponse()[0]->getReponse());
                         }
@@ -102,7 +107,6 @@
                         $bonne_reponse = true;
                         $reponse_question = $liste_de_question_propre[$i-1]->getReponse();
                         $reponse_utilisateur_question = $reponse_utilisateur[$i];
-
 
                         // COMPARAISON DES DEUX TABLEAUX
                         // si la longueur des deux est différente
@@ -127,6 +131,7 @@
                                 }
                             }
                             bonneReponse($reponses_affichage);
+                            $score_utilisateur += $liste_de_question_propre[$i-1]->getValeurQuestion();
                         } else {
                             $reponses_affichage = "";
                             for ($j = 0; $j < count($reponse_question); $j++){
@@ -141,6 +146,7 @@
                     echo "</div>";
                 }
                 echo "</div>";
+                echo "<div class='score'>Votre score est de ".$score_utilisateur."/".$score_max."</div>";
             ?>
 
             <button onclick="window.location.href = 'menu.php';">Retour sur la page des questionnaires</button>

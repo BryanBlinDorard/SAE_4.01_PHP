@@ -108,7 +108,7 @@ class Question {
             }
             echo "</div>";
         } else if ($this->typeQuestion == "checkbox") {
-            echo "<div class='checkboxAnswer'>";
+            echo "<div class='checkboxAnswer' required>";
             // récupère les réponses de la question du questionnaire
             $requete = $connexion->prepare("SELECT * FROM REPONSE natural join QUESTION WHERE idQuestion = $this->id and idQuestionnaire = $this->idQuestionnaire");
             $requete->execute();
