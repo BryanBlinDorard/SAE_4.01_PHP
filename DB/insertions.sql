@@ -11,7 +11,7 @@ insert into QUESTION values (1, 1, "Quelle est la date de sortie du jeu ?", "dat
                             (7, 5, "Combien y'a-t-il de boss ?", "number", 1, 1),
                             (8, 2, "Quel est la créature la plus puissante du jeu ?", "radio", 1, 3),
                             (9, 3, "En quelle version le style de PvP a beaucoup changé ?", "text", 1, 3),
-                            (10, 4, "Combien de lingots de fer sont nécessaires pour frabriquer un set d'arumure complet en fer ?", "number", 1, 3),
+                            (10, 4, "Combien de lingots de fer sont nécessaires pour frabriquer un set d'armure complet en fer ?", "number", 1, 3),
                             (11, 5, "Qui est le créateur de Minecraft ?", "text", 1, 3),
                             (12, 2, "Quel est le nom du boss le plus dur du jeu ?", "text", 1, 2),
                             (13, 3, "Quelles sont les formes de magies présentes dans le jeu ?", "checkbox", 2, 2),
