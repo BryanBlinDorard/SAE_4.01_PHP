@@ -28,3 +28,8 @@ p {
 button {
     margin-top: 2%;
 }
+
+.score {
+    text-align: center;
+    font-size: 200%;
+}
