@@ -1,5 +1,14 @@
 .resultat {
+    float: left;
+    width: 80%;
     text-align:center;
+}
+
+#asideDroite {
+    float: right;
+    width: 20%;
+    text-align: center;
+    margin-top: 2%;
 }
 
 .question {
@@ -32,4 +41,10 @@ button {
 .score {
     text-align: center;
     font-size: 200%;
+}
+
+input[name="nom"] {
+    color: #24244b;
+    /* réduit la largeur */
+    width: 20%;
 }

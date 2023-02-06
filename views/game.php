@@ -24,6 +24,8 @@
             $questionnaire->execute();
             $questionnaire = $questionnaire->fetch();
 
+            $numero_de_la_question_actuelle = 1;
+            $nombre_de_question = count($questions);
             foreach ($questions as $question){
                 $liste_de_questions[] = new Question($question['idQuestion'], $question['numero'], $question['question'], $question['typeQuestion'], $question['valeurQuestion'], $question['idQuestionnaire'],"");
             }
@@ -31,10 +33,11 @@
         
         <div class="game">
             <?php
-                echo "<h2>".$questionnaire['nom']."</h2>";
+                echo "<h1>".$questionnaire['nom']."</h1>";
 
                 echo "<form id='form-game' action='/resultat.php' method='POST'>";
                 echo "<input type='hidden' name='questionnaire' value='".$id_questionnaire."'>";
+                echo "<h2 class='numQuestionActuelle'>Question 1/".$nombre_de_question."</h2>";
                 foreach($liste_de_questions as $question){
                     $question->affichage($connexion);
                 }

@@ -4,7 +4,6 @@
         <meta charset="utf-8" />
         <title>Quyz</title>
     </head>
-    
     <body>
         <style><?php include '../styles/home.css'; ?></style>
         <style><?php include '../styles/menu.css'; ?></style>
@@ -21,6 +20,7 @@
         <h2>Choisissez un questionnaire</h2>
         <div class="menu">
         <?php 
+            // Affichage des questionnaires
             foreach($questionnaires as $questionnaire){
                 echo "<div id='Q".$questionnaire['idQuestionnaire']."' class='questionnaire'>";
                 echo "<h3>".$questionnaire['nom']."</h3>";
@@ -32,6 +32,11 @@
             }
         ?>
         </div>
+        <?php
+            if (isset($_POST['save'])){
+                echo "<p class='messageScore'>Votre score a bien été enregistré</p>";
+            }
+        ?>
         
     </body>
 </html>
