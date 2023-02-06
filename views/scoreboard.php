@@ -21,7 +21,6 @@
                 foreach($classements as $classement) {
                     $listeClassements[] = new Classement($classement["idClassement"], $classement["idQuestionnaire"], $classement["nom"]);
                 }
-
                 foreach($listeClassements as $classement) {
                     echo "<div id=\"Q".$classement->id."\" class=\"questionnaireScoreboard\">";
                     echo "<h3>".$classement->nomQuestionnaire."</h3>";
