@@ -15,7 +15,7 @@ class Question {
         $this->typeQuestion = $typeQuestion;
         $this->valeurQuestion = $valeurQuestion;
         $this->idQuestionnaire = $idQuestionnaire;
-        $this->reponse = $reponse;
+        $this->reponse =array();
     }
 
     public function getId(){
@@ -70,12 +70,8 @@ class Question {
         $this->idQuestionnaire = $idQuestionnaire;
     }
 
-    public function setReponse($reponse){
-        $this->reponse = $reponse;
-    }
-
     public function addReponse($reponse){
-        $this->reponse[] = $reponse;
+        array_push($this->reponse, $reponse);
     }
 
     public function __toString(){

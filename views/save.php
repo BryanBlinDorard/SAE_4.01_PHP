@@ -1,6 +1,7 @@
 <?php 
 // Récupération de la connexion à la base de données
-require("../connexion.php");
+require_once("../functions/fonctions.php");
+$connexion = connect_db();
 
 // récupération des données du formulaire
 $nom = $_POST['nom'];
