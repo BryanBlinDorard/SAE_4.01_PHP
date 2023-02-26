@@ -16,7 +16,6 @@
                     
                     $idQuestionnaire = $_POST['questionnaire'];
                     $score_utilisateur = gererResultat($idQuestionnaire);
-                    print_r($score_utilisateur);
                 ?>
                 <button onclick="window.location.href = 'menu.php';">Retour sur la page des questionnaires</button>
             </div>

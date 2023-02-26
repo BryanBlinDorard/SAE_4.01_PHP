@@ -7,13 +7,12 @@
     <body>
         <style><?php include '../styles/home.css'; ?></style>
         <style><?php include '../styles/menu.css'; ?></style>
-        <style><?php include '../styles/listes.css'; ?></style>
+        <style><?php include '../styles/edit.css'; ?></style>
+        <script><?php include '../js/edit.js'; ?></script>
         
         <?php
-            echo "<input type='button' value='Retour' onclick='window.location.href=\"/admin.php\"'>";
-            echo "<h2>Les questionnaires</h2>";
             require_once("../functions/fonctions.php");
-            affichageQuestinnaireListage();
+            editQuestionDonnee();
         ?>
     </body>
 </html>
