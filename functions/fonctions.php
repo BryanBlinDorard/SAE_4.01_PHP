@@ -723,3 +723,22 @@ function getMaxIDQuestionnaire(){
     $id = $stmt->fetch();
     return $id[0];
 }
+
+function verifierMdp($username){
+    $db = connect_db();
+    $sql = "SELECT mdp FROM UTILISATEUR WHERE nom = ?";
+    $stmt = $db->prepare($sql);
+    $stmt->execute([$username]);
+    $mdp = $stmt->fetch();
+    return $mdp[0];
+}
+
+function verifierSiIlEstConnecte(){
+    // Vérifie si l'utilisateur est connecté
+    session_start();
+    if (isset($_SESSION["username"])) {
+        return true;
+    } else {
+        return false;
+    }
+}

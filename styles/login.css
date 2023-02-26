@@ -1,0 +1,26 @@
+.login {
+    background: #6e507e;
+    border: 1px solid #000;
+    box-shadow: 0 0 10px #000;
+    margin: 0 auto;
+    padding-top: 20px;
+    width: 300px;
+    border-radius: 15px;
+    text-align: center;
+    font-size: 13px;
+}
+
+.login input[type="text"], .login input[type="password"] {
+    margin-bottom: 1%;
+    color: #000;
+
+}
+
+.login input[type="submit"] {
+    margin-bottom: 2%;
+}
+
+center {
+    margin-bottom: 1%;
+    font-size: 15px;
+}

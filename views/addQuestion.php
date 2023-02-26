@@ -5,16 +5,20 @@
         <title>Quyz</title>
     </head>
     <body>
+        <?php
+            require_once("../functions/fonctions.php");
+            if (!verifierSiIlEstConnecte()) {
+                header('Location: ./home.php');
+            } 
+        ?>
+
         <style><?php include '../styles/home.css'; ?></style>
         <style><?php include '../styles/menu.css'; ?></style>
         <style><?php include '../styles/edit.css'; ?></style>
         <script><?php include '../js/add.js'; ?></script>
         <script><?php include '../js/edit.js'; ?></script>
 
-
-        
         <?php
-            require_once("../functions/fonctions.php");
             // On récupère l'id du questionnaire
             $idQ = $_GET['id'];
             

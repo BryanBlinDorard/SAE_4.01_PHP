@@ -5,13 +5,17 @@
         <title>Quyz</title>
     </head>
     <body>
+        <?php
+            require_once("../functions/fonctions.php");
+            if (!verifierSiIlEstConnecte()) {
+                header('Location: ./home.php');
+            }
+        ?>
         <script><?php include '../js/modal.js'; ?></script>
         <style><?php include '../styles/home.css'; ?></style>
         <style><?php include '../styles/menu.css'; ?></style>
         <style><?php include '../styles/edit.css'; ?></style>
-        
         <?php
-            require_once("../functions/fonctions.php");
             $idQ = $_GET['id'];
             echo "<header>";
             echo "<input type='button' value='Retour' onclick='window.location.href=\"/listes.php\"'>";
@@ -20,7 +24,8 @@
             echo "</header>";
             
             affichageQuestionQuestionnaireListage()
-        ?>
+            ?>
+
         <!-- La boîte de dialogue modale -->
         <div id="myModal" class="modal">
             <!-- Le contenu de la boîte de dialogue modale -->
@@ -40,5 +45,6 @@
                 <input type="submit" value="Créer">
             
         </div>
+        
     </body>
 </html>

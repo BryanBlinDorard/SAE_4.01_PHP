@@ -59,3 +59,6 @@ insert into SCORE values (1, 1, "Bryan", 1),
                          (4, 1, "Constantin", 2),
                          (5, 0, "Bryan", 3),
                          (6, 2, "Constantin", 3);
+
+insert into UTILISATEUR values (1, "Bryan", "1234"),
+                               (2, "Constantin", "4321");

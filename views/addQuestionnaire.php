@@ -5,13 +5,17 @@
         <title>Quyz</title>
     </head>
     <body>
+        <?php
+        require_once("../functions/fonctions.php");
+        if (!verifierSiIlEstConnecte()) {
+            header('Location: ./home.php');
+        } 
+        ?>
         <style><?php include '../styles/home.css'; ?></style>
         <style><?php include '../styles/menu.css'; ?></style>
         <style><?php include '../styles/edit.css'; ?></style>
         
         <?php
-            require_once("../functions/fonctions.php");
-            
             echo "<h2>Création du questionnaire</h2>";
             echo "<form action='saveNewQuestionnaire.php' method='post'>";
             
@@ -20,8 +24,6 @@
             echo "<input type='text' name='name' id='name' required>";
             echo "<input type='submit' value='Valider'>";
             echo "</div>";
-
-            // ajout du bouton de validation
 
             echo "</form>";
             
