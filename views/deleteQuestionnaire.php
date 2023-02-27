@@ -18,14 +18,17 @@
         $idClassement = $resultatClassement->fetch();
         $idClassement = $idClassement['idClassement'];
         
-        // supprime tout les scores du classement 
-        $requeteScore = "DELETE FROM SCORE WHERE idClassement = $idClassement";
-        $resultatScore = $db->query($requeteScore);
+        // regarde si il y a un classement sur le questionnaire
+        if ($idClassement != null) {
+            // supprime tout les scores du classement 
+            $requeteScore = "DELETE FROM SCORE WHERE idClassement = $idClassement";
+            $resultatScore = $db->query($requeteScore);
 
+            // supprime le classement
+            $requeteClassement = "DELETE FROM CLASSEMENT WHERE idClassement = $idClassement";
+            $classement = $db->query($requeteClassement);
+        }
 
-        // supprime le classement
-        $requeteClassement = "DELETE FROM CLASSEMENT WHERE idClassement = $idClassement";
-        $classement = $db->query($requeteClassement);
 
         // supprime les réponses
         $requeteReponses = "DELETE FROM REPONSE WHERE idQuestion IN (SELECT idQuestion FROM QUESTION WHERE idQuestionnaire = $id)";

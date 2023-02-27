@@ -162,6 +162,7 @@ function getNombreDeQuestions($idQuestionnaire){
 //     return $reponseBonneQuestion;
 // }
 
+
 function getIDMaxQuestion(){
     $connexion_db = connect_db();
     $idMaxQuestion = $connexion_db->prepare("SELECT MAX(idQuestion) FROM QUESTION");
@@ -418,7 +419,7 @@ function updateNumeroQuestion($idQuestion,$numeroQuestion){
     // On récupère la connexion à la base de données
     $db = connect_db();
     // On prépare la requête
-    $query = $db->prepare("UPDATE question SET numero = :numeroQuestion WHERE idQuestion = :idQuestion");
+    $query = $db->prepare("UPDATE QUESTION SET numero = :numeroQuestion WHERE idQuestion = :idQuestion");
     // On exécute la requête
     $query->execute([
         "numeroQuestion" => $numeroQuestion,
@@ -740,5 +741,102 @@ function verifierSiIlEstConnecte(){
         return true;
     } else {
         return false;
+    }
+}
+
+function memeNomQuestionnaire($nomQuestionnaire) {
+    $db = connect_db();
+    $sql = "SELECT nom FROM QUESTIONNAIRE WHERE nom = ?";
+    $stmt = $db->prepare($sql);
+    $stmt->execute([$nomQuestionnaire]);
+    $nom = $stmt->fetch();
+    if ($nom[0] == $nomQuestionnaire) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+function creerQuestionnaire($nomQuestionnaire){
+    $db = connect_db();
+    $newId = getMaxIDQuestionnaire() + 1;
+    $sql = "INSERT INTO QUESTIONNAIRE (idQuestionnaire, nom) VALUES (?, ?)";
+    $stmt = $db->prepare($sql);
+    $stmt->execute([$newId, $nomQuestionnaire]);
+}
+
+function creerQuestion($question, $type, $valeur ,$reponse, $idQuestionnaire) {
+    $db = connect_db();
+
+    // Création de la question
+    $newId = getIDMaxQuestion() + 1;
+    $numero = getNumeroMaxQuestion($idQuestionnaire) + 1;
+    $sql = "INSERT INTO QUESTION (idQuestion, numero, question, typeQuestion, valeurQuestion, idQuestionnaire) VALUES (?, ?, ?, ?, ?, ?)";
+    $stmt = $db->prepare($sql);
+    $stmt->execute([$newId, $numero, $question, $type, $valeur, $idQuestionnaire]);
+
+    // Création des réponses
+
+    // Si c'est un texte, un nombre ou une date
+    if ($type == "texte" || $type == "number" || $type == "date") {
+        $newIdR = getIDMaxReponse() + 1;
+        $sql = "INSERT INTO REPONSE (idReponse, reponse, estBonne, idQuestion) VALUES (?, ?, ?, ?)";
+        $stmt = $db->prepare($sql);
+        $stmt->execute([$newIdR, $reponse[0]["reponseTexte"], $reponse[0]["estBonne"], $newId]);
+    } else if ($type == "radio") {
+        for ($i=0; $i < count($reponse); $i++) { 
+            $newIdR = getIDMaxReponse() + 1;
+            $sql = "INSERT INTO REPONSE (idReponse, reponse, estBonne, idQuestion) VALUES (?, ?, ?, ?)";
+            $stmt = $db->prepare($sql);
+            $stmt->execute([$newIdR, $reponse[$i]["reponseTexte"], $reponse[$i]["estBonne"], $newId]);
+        }
+    } else if ($type == "checkbox") {
+        for ($i=0; $i < count($reponse); $i++) { 
+            $newIdR = getIDMaxReponse() + 1;
+            $sql = "INSERT INTO REPONSE (idReponse, reponse, estBonne, idQuestion) VALUES (?, ?, ?, ?)";
+            $stmt = $db->prepare($sql);
+            $stmt->execute([$newIdR, $reponse[$i]["reponseTexte"], $reponse[$i]["estBonne"], $newId]);
+        }
+    }
+}
+
+
+function systemPourImport(){
+    // Vérification que le formulaire a été soumis, du formulaire d'import
+    if (isset($_POST['submitImport'])) {
+        // Vérification que le fichier a bien été uploadé
+        if (isset($_FILES['fileToUpload']) && $_FILES['fileToUpload']['name'] != "") {
+            // Vérification que le fichier est bien un fichier JSON
+            if (pathinfo($_FILES['fileToUpload']['name'], PATHINFO_EXTENSION) == 'json') {
+                // Vérification que le fichier n'est pas vide
+                if ($_FILES['fileToUpload']['size'] != 0) {
+                    // Vérification que le fichier n'est pas trop gros
+                    if ($_FILES['fileToUpload']['size'] < 1000000) {
+                        // Lire le fichier JSON
+                        $json = file_get_contents($_FILES['fileToUpload']['tmp_name']);
+                        // Décoder le fichier JSON
+                        $json_data = json_decode($json, true);
+                        $nom_du_questionnaire = $json_data['nom'];
+                        $questions = $json_data['questions'];
+                        // Vérification que le questionnaire n'existe pas déjà
+                        require_once('../functions/fonctions.php');
+                        if (!memeNomQuestionnaire($nom_du_questionnaire)) {
+                            creerQuestionnaire($nom_du_questionnaire);
+                            print_r($questions);
+                            $id_du_questionnaire_actuel = getMaxIDQuestionnaire();
+                            foreach ($questions as $question) {
+                                creerQuestion($question['question'], $question['type'], $question['valeur'],$question['reponses'], $id_du_questionnaire_actuel);
+                            }
+                        } else {
+                            echo '<p class="error">Un questionnaire du même nom existe déja</p>';
+                        }
+                    } else {
+                        echo '<p class="error">Le fichier est trop gros !</p>';
+                    }
+                }
+            } 
+        } else {
+            echo '<p class="error">Le fichier n\'a pas été uploadé !</p>';
+        }
     }
 }

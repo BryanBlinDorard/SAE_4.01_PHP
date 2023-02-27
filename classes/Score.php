@@ -9,9 +9,5 @@
             $this->scorePersonne = $scorePersonne;
             $this->nomPersonne = $nomPersonne;
         }
-
-        public function affichage() {
-            
-        }
     }
 ?>
