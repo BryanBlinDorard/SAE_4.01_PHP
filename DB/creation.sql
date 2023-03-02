@@ -36,6 +36,14 @@ create table SCORE(
     primary key (idScore)
 );
 
+create table UTILISATEUR(
+    idUtilisateur int,
+    nom varchar(30),
+    mdp varchar(30),
+    primary key (idUtilisateur)
+);
+
+
 alter table REPONSE add foreign key (idQuestion) references QUESTION(idQuestion);
 alter table QUESTION add foreign key (idQuestionnaire) references QUESTIONNAIRE(idQuestionnaire);
 alter table CLASSEMENT add foreign key (idQuestionnaire) references QUESTIONNAIRE(idQuestionnaire);

@@ -22,9 +22,9 @@ insert into REPONSE values (1, "2016-03-24", true, 1),
                            (2, "2022-02-25", true, 2),
                            (3, "2011-11-18", true, 3),
                            (4, "Iudex Gundyr", true, 4),
-                           (5, "Épée droite d'Irithyll", false, 5),
+                           (5, "Epee droite d'Irithyll", false, 5),
                            (6, "Grand marteau de Vordt", false, 5),
-                           (7, "Espadon de Chevalier de la Cathédrale", true, 5),
+                           (7, "Espadon de Chevalier de la Cathedrale", true, 5),
                            (8, "Greirat", false, 6),
                            (9, "Siegward de catarina", false, 6),
                            (10, "Ranni la Sorcière", true, 6),
@@ -59,3 +59,6 @@ insert into SCORE values (1, 1, "Bryan", 1),
                          (4, 1, "Constantin", 2),
                          (5, 0, "Bryan", 3),
                          (6, 2, "Constantin", 3);
+
+insert into UTILISATEUR values (1, "Bryan", "1234"),
+                               (2, "Constantin", "4321");

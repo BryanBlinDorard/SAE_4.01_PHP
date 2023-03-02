@@ -8,7 +8,7 @@ class Question {
     public $idQuestionnaire;
     public $reponse;
 
-    public function __construct($id, $numero, $question, $typeQuestion, $valeurQuestion, $idQuestionnaire, $reponse){
+    public function __construct($id, $numero, $question, $typeQuestion, $valeurQuestion, $idQuestionnaire){
         $this->id = $id;
         $this->numero = $numero;
         $this->question = $question;

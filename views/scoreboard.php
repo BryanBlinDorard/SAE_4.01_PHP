@@ -15,5 +15,6 @@
                 require_once("../functions/fonctions.php");
                 afficherClassements();
             ?>        
+        </div>
     </body>
 </html>
