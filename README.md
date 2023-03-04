@@ -16,7 +16,7 @@ Cette application web est conçue pour permettre aux utilisateurs de faire des q
 
 ## Utilisation
 
-Une fois l'application installée, vous pouvez y accéder en lançant la commande `php -S localhost:8000` dans le dossier /views puis ouvrant un navigateur web et en entrant l'URL suivante : http://localhost:8000
+Une fois l'application installée, vous pouvez y accéder en lançant la commande `php -S localhost:8000` dans le dossier /views puis ouvrant un navigateur web et en entrant l'URL suivante : http://localhost:8000/home.php
 
 L'application vous permet de :
 
