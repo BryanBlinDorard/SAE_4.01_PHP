@@ -837,10 +837,10 @@ function memeNomQuestionnaire($nomQuestionnaire) {
     $stmt = $db->prepare($sql);
     $stmt->execute([$nomQuestionnaire]);
     $nom = $stmt->fetch();
-    if ($nom[0] == $nomQuestionnaire) {
-        return true;
-    } else {
+    if ($nom[0] != $nomQuestionnaire) {
         return false;
+    } else {
+        return true;
     }
 }
 
@@ -852,7 +852,7 @@ function creerQuestionnaire($nomQuestionnaire){
     $stmt->execute([$newId, $nomQuestionnaire]);
 }
 
-function creerQuestion($question, $type, $valeur ,$reponse, $idQuestionnaire) {
+function creerQuestion($question, $type, $valeur, $reponse, $idQuestionnaire) {
     $db = connect_db();
 
     // Création de la question
@@ -865,7 +865,12 @@ function creerQuestion($question, $type, $valeur ,$reponse, $idQuestionnaire) {
     // Création des réponses
 
     // Si c'est un texte, un nombre ou une date
-    if ($type == "texte" || $type == "number" || $type == "date") {
+    if ($type == "number" || $type == "date") {
+        $newIdR = getIDMaxReponse() + 1;
+        $sql = "INSERT INTO REPONSE (idReponse, reponse, estBonne, idQuestion) VALUES (?, ?, ?, ?)";
+        $stmt = $db->prepare($sql);
+        $stmt->execute([$newIdR, $reponse[0]["reponseTexte"], $reponse[0]["estBonne"], $newId]);
+    } if ($type == "text") {
         $newIdR = getIDMaxReponse() + 1;
         $sql = "INSERT INTO REPONSE (idReponse, reponse, estBonne, idQuestion) VALUES (?, ?, ?, ?)";
         $stmt = $db->prepare($sql);
