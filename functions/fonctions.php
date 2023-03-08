@@ -1,6 +1,10 @@
 <?php
 
 function connect_db() {
+    /** Permet d'avoir la connexion db 
+     *  
+     *  @return PDO $connexion
+     */
     require_once("connect.php");
 
     $dsn = "mysql:dbname=".BASE.";host=".SERVER;
@@ -14,6 +18,9 @@ function connect_db() {
 }
 
 function getQuestionnaires(){
+    /** Récupère tous les questionnaires 
+     *  @return array(Questionnaire)
+     */
     $connexion_db = connect_db();
     $requete = $connexion_db->prepare("SELECT * FROM QUESTIONNAIRE ");
     $requete->execute();
@@ -22,6 +29,9 @@ function getQuestionnaires(){
 }
 
 function getQuestionnairesAvecQuestions(){
+    /** Récupère tous les questionnaires avec les questions 
+     *  @return array(Questionnaire)
+     */
     $connexion_db = connect_db();
     $requete = $connexion_db->prepare("SELECT * FROM QUESTIONNAIRE WHERE idQuestionnaire IN (SELECT idQuestionnaire FROM QUESTION)");
     $requete->execute();
@@ -30,6 +40,9 @@ function getQuestionnairesAvecQuestions(){
 }
 
 function afficherQuestionnaires(){
+    /** Affiche tous les questionnaires 
+     *  @return void
+     */
     $questionnaires = getQuestionnairesAvecQuestions();
     // si il n'y a pas de questionnaire on affiche un message
     if(empty($questionnaires)) {
@@ -48,6 +61,9 @@ function afficherQuestionnaires(){
 }
 
 function getClassements(){
+    /** Récupère tous les classements
+     *  @return void
+     */
     require_once("../classes/Classement.php");
     $connexion_db = connect_db();
     $requete = $connexion_db->prepare("select * from QUESTIONNAIRE natural join CLASSEMENT");
@@ -61,6 +77,9 @@ function getClassements(){
 }
 
 function affichageDuBoutonScoreboard(){
+    /** Affiche le bouton scoreboard si il y a des classements
+     *  @return void
+     */
     $listeClassements = getClassements();
     if(!empty($listeClassements)) {
         echo "<a class='btn' href='/scoreboard.php'>Scoreboard</a>";
@@ -68,6 +87,9 @@ function affichageDuBoutonScoreboard(){
 }
 
 function afficherClassements(){
+    /** Affiche tous les classements
+     *  @return void
+     */
     $connexion_db = connect_db();
     $listeClassements = getClassements();
     // si il n'y a pas de classement on affiche un message
@@ -98,6 +120,9 @@ function afficherClassements(){
 }
 
 function getQuestions($idQuestionnaire){
+    /** Retourne toutes les questions d'un questionnaire
+     *  @return array(Question)
+     */
     require_once("../classes/Question.php");
     $connexion_db = connect_db();
 
@@ -113,6 +138,10 @@ function getQuestions($idQuestionnaire){
 }
 
 function getQuestion($idQuestion){
+    /** Retourne une question
+     *  @param $id Id d'une question
+     *  @return Question
+     */
     require_once("../classes/Question.php");
     $connexion_db = connect_db();
 
@@ -125,6 +154,10 @@ function getQuestion($idQuestion){
 }
 
 function getQuestionsOrdreNumero($idQuestionnaire){
+    /** Retourne la liste des questions d'un questionnaire dans le sens des numéros
+     *  @param $idQuestionnaire Id d'un questionnaire
+     *  @return array(Question)
+     */
     require_once("../classes/Question.php");
     $connexion_db = connect_db();
 
@@ -139,6 +172,10 @@ function getQuestionsOrdreNumero($idQuestionnaire){
 }
 
 function getQuestionnaire($idQuestionnaire){
+    /** Retourne un questionnaire
+     *  @param $idQuestionnaire Id d'un questionnaire
+     *  @return Questionnaire
+     */
     $connexion_db = connect_db();
     $questionnaire = $connexion_db->prepare("SELECT * FROM QUESTIONNAIRE WHERE idQuestionnaire = $idQuestionnaire");
     $questionnaire->execute();
@@ -147,6 +184,10 @@ function getQuestionnaire($idQuestionnaire){
 }
 
 function getNombreDeQuestions($idQuestionnaire){
+    /** Retourne le nombre de questions d'un questionnaire
+     *  @param $idQuestionnaire Id d'un questionnaire
+     *  @return int
+     */
     $connexion_db = connect_db();
     $nombreDeQuestions = $connexion_db->prepare("SELECT COUNT(*) FROM QUESTION WHERE idQuestionnaire = $idQuestionnaire");
     $nombreDeQuestions->execute();
@@ -164,6 +205,9 @@ function getNombreDeQuestions($idQuestionnaire){
 
 
 function getIDMaxQuestion(){
+    /** Retourne l'id max dans les Questions
+     *  @return int
+     */
     $connexion_db = connect_db();
     $idMaxQuestion = $connexion_db->prepare("SELECT MAX(idQuestion) FROM QUESTION");
     $idMaxQuestion->execute();
@@ -172,6 +216,10 @@ function getIDMaxQuestion(){
 }
 
 function getNumeroMaxQuestion($idQ){
+    /** Retourne le numéro max dans les Questions
+     *  @param $idQ Id d'un questionnaire
+     *  @return int
+     */
     $connexion_db = connect_db();
     $numeroMaxQuestion = $connexion_db->prepare("SELECT MAX(numero) FROM QUESTION WHERE idQuestionnaire = $idQ");
     $numeroMaxQuestion->execute();
@@ -180,6 +228,9 @@ function getNumeroMaxQuestion($idQ){
 }
 
 function getIDMaxReponse(){
+    /** Retourne l'id max dans les Réponses
+     *  @return int
+     */
     $connexion_db = connect_db();
     $idMaxReponse = $connexion_db->prepare("SELECT MAX(idReponse) FROM REPONSE");
     $idMaxReponse->execute();
@@ -189,6 +240,10 @@ function getIDMaxReponse(){
 
 
 function affichageQuestions($idQuestionnaire){
+    /** Affiche les questions d'un questionnaire
+     *  @param $idQuestionnaire Id d'un questionnaire
+     *  @return void
+     */
     $connexion_db = connect_db();
     $questionnaire = getQuestionnaire($idQuestionnaire);
     $liste_de_questions = getQuestions($idQuestionnaire);
@@ -207,6 +262,10 @@ function affichageQuestions($idQuestionnaire){
 }
 
 function getReponseQuestion($idQuestion){
+    /** Retourne les réponses d'une question
+     *  @param $idQuestion Id d'une question
+     *  @return array(Reponse)
+     */
     $connexion_db = connect_db();
     $requete = $connexion_db->prepare("SELECT * FROM REPONSE WHERE idQuestion = $idQuestion");
     $requete->execute();
@@ -215,6 +274,10 @@ function getReponseQuestion($idQuestion){
 }
 
 function getReponsesListesQuestions($liste_de_questions) {
+    /** Ajoute les réponses bonnes à chaque question
+     *  @param $liste_de_questions Liste de questions
+     *  @return array(Question)
+     */
     require_once("../classes/Reponse.php");
     $connexion_db = connect_db();
     foreach($liste_de_questions as $question){
@@ -231,6 +294,11 @@ function getReponsesListesQuestions($liste_de_questions) {
 }
 
 function getReponseUsers($liste_de_questions,$nombre_de_question){
+    /** Retourne les réponses des utilisateurs
+     *  @param $liste_de_questions Liste de questions
+     *  @param $nombre_de_question Nombre de questions
+     *  @return array(array(int))
+     */
     $reponse_utilisateur = array();
     for ($i = 0; $i < $nombre_de_question; $i++){
         $num_question = $liste_de_questions[$i]->getNumero();
@@ -249,6 +317,10 @@ function getReponseUsers($liste_de_questions,$nombre_de_question){
 }
 
 function gererResultat($idQuestionnaire){
+    /** Gère le résultat du questionnaire
+     *  @param $idQuestionnaire Id d'un questionnaire
+     *  @return void
+     */
     require_once("../classes/Question.php");
     require_once("../classes/Reponse.php");
     
@@ -280,6 +352,13 @@ function gererResultat($idQuestionnaire){
 }
 
 function affichageResultat($nombre_de_question,$liste_de_questions,$reponse_utilisateur,$score_utilisateur,$score_max) {
+    /** Affichage des Résultats sur la page du même nom
+     *  @param $nombre_de_question Nombre de questions
+     *  @param $liste_questions Liste
+     *  @param $reponse_utilisateur Réponses de l'utilisateur
+     *  @param $score_utilisateur Score de l'utilisateur
+     *  @param $score_max Score max
+     */
     echo "<div class='questions'>";
     for ($i = 1 ; $i <= $nombre_de_question ; $i++){
         echo "<div id =q".$i." class = question>";
@@ -296,6 +375,12 @@ function affichageResultat($nombre_de_question,$liste_de_questions,$reponse_util
 }
 
 function verifieResultat($type_question,$reponse_utilisateur,$question,$score_utilisateur) {
+    /** Permet de vérifier le résultat de l'utilisateur
+     *  @param $type_question Type de question
+     *  @param $reponse_utilisateur Réponse de l'utilisateur
+     *  @param $question Question
+     *  @param $score_utilisateur Score de l'utilisateur
+     */
     require_once("affichage.php");
     if ($type_question == "date" or $type_question == "text" or $type_question == "number") {
         if ($reponse_utilisateur == $question->getReponse()[0]->getReponse()) {
@@ -353,7 +438,8 @@ function verifieResultat($type_question,$reponse_utilisateur,$question,$score_ut
     return $score_utilisateur;
 }
 
-function affichageQuestinnaireListage() {
+function affichageQuestionnaireListage() {
+    /** Affiche des Questionnaire */
     $questionnaires = getQuestionnaires();
 
     foreach ($questionnaires as $questionnaire) {
@@ -366,6 +452,7 @@ function affichageQuestinnaireListage() {
 }
 
 function affichageQuestionQuestionnaireListage(){
+    /** Affiche les questions du questionnaire */
     // On récupère l'id du questionnaire
     $id = $_GET['id'];
             
@@ -822,7 +909,6 @@ function systemPourImport(){
                         require_once('../functions/fonctions.php');
                         if (!memeNomQuestionnaire($nom_du_questionnaire)) {
                             creerQuestionnaire($nom_du_questionnaire);
-                            print_r($questions);
                             $id_du_questionnaire_actuel = getMaxIDQuestionnaire();
                             foreach ($questions as $question) {
                                 creerQuestion($question['question'], $question['type'], $question['valeur'],$question['reponses'], $id_du_questionnaire_actuel);

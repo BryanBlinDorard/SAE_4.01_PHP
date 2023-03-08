@@ -39,6 +39,7 @@
                     <br>
                     <input type="submit" value="Exporter" name="submitExport">
                 </form>
+                <i>Seulement sur linux</i>
             </div>
         </div>
 

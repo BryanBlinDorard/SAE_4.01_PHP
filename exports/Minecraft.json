@@ -1,0 +1,76 @@
+{
+    "nom": "Minecraft",
+    "questions": {
+        "1": {
+            "question": "Quelle est la date de sortie du jeu ?",
+            "type": "date",
+            "valeur": 1,
+            "reponses": [
+                {
+                    "reponseTexte": "2011-11-18",
+                    "estBonne": 1
+                }
+            ]
+        },
+        "2": {
+            "question": "Quel est la créature la plus puissante du jeu ?",
+            "type": "radio",
+            "valeur": 1,
+            "reponses": [
+                {
+                    "reponseTexte": "Le Lapin",
+                    "estBonne": 0
+                },
+                {
+                    "reponseTexte": "Le Wither",
+                    "estBonne": 0
+                },
+                {
+                    "reponseTexte": "L'Ancien Gardien",
+                    "estBonne": 0
+                },
+                {
+                    "reponseTexte": "Le Warden",
+                    "estBonne": 1
+                },
+                {
+                    "reponseTexte": "Le Dragon de l'Ender",
+                    "estBonne": 0
+                }
+            ]
+        },
+        "3": {
+            "question": "En quelle version le style de PvP a beaucoup changé ?",
+            "type": "text",
+            "valeur": 1,
+            "reponses": [
+                {
+                    "reponseTexte": "1.9",
+                    "estBonne": 1
+                }
+            ]
+        },
+        "4": {
+            "question": "Combien de lingots de fer sont nécessaires pour frabriquer un set d'armure complet en fer ?",
+            "type": "number",
+            "valeur": 1,
+            "reponses": [
+                {
+                    "reponseTexte": "24",
+                    "estBonne": 1
+                }
+            ]
+        },
+        "5": {
+            "question": "Qui est le créateur de Minecraft ?",
+            "type": "text",
+            "valeur": 1,
+            "reponses": [
+                {
+                    "reponseTexte": "Notch",
+                    "estBonne": 1
+                }
+            ]
+        }
+    }
+}

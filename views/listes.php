@@ -14,7 +14,7 @@
             echo "<input type='button' value='Retour' onclick='window.location.href=\"/admin.php\"'>";
             echo "<h2>Les questionnaires</h2>";
             require_once("../functions/fonctions.php");
-            affichageQuestinnaireListage();
+            affichageQuestionnaireListage();
         ?>
     <style><?php include '../styles/home.css'; ?></style>
     <style><?php include '../styles/menu.css'; ?></style>
