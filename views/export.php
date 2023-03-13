@@ -54,10 +54,14 @@
     // Vérifier que le fichier existe
     if (file_exists($file_path)) {
 
-        // Définir les entêtes HTTP pour le téléchargement
-        header('Content-Type: application/octet-stream');
-        header('Content-Disposition: attachment; filename="' . basename($file_path) . '"');
-        header('Content-Length: ' . filesize($file_path));
+        // définir les en-têtes HTTP pour le téléchargement
+        header('Content-Description: File Transfer');
+        header('Content-Type: application/json');
+        header('Content-Disposition: attachment; filename="'.basename($file).'"');
+        header('Expires: 0');
+        header('Cache-Control: must-revalidate');
+        header('Pragma: public');
+        header('Content-Length: ' . filesize($file));
             
         // Lire le contenu du fichier et le renvoyer au navigateur
         readfile($file_path);

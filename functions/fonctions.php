@@ -837,7 +837,7 @@ function memeNomQuestionnaire($nomQuestionnaire) {
     $stmt = $db->prepare($sql);
     $stmt->execute([$nomQuestionnaire]);
     $nom = $stmt->fetch();
-    if ($nom[0] != $nomQuestionnaire) {
+    if ($nom) {
         return false;
     } else {
         return true;
