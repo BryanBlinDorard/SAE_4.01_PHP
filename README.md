@@ -32,6 +32,14 @@ L'application vous permet de :
 
 - Import/export de quizs et de questions (seulement sur linux)
 
+## Compte utilisateur
+
+Pour accéder à certaines fonctionnalités de l'application, vous pouvez utiliser les comptes d'utilisateurs suivants :
+
+    Username: bryan, password: 1234
+    Username: constantin, password: 4321
+
+Vous pouvez utiliser ces comptes pour vous connecter à la partie admin pour ajouter, éditer ou supprimer des quizs et des questions.
 
 ## Si PHP et MySQL ne fonctionnent pas, voici les étapes à suivre :
 
